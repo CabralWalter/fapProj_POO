@@ -1,1 +1,1 @@
-declare let testando: string;
+export {};
