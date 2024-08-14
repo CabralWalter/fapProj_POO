@@ -1,19 +1,22 @@
 import * as readlineSync from 'readline-sync';
 import { Cliente } from './clientes';
-
-
+import { Produto } from './Produto';
 
 class Menu {
     private clientes: Cliente[] = [];
+
     public exibirMenu(): void {
         let opcao: number;
         do {
             console.log(`
 1. Adicionar Cliente
 2. Adicionar Produto
-3. Criar Pedido
-4. Visualizar Pedidos
-5. Sair
+3. Atualizar Produto
+4. Remover Produto
+5. Listar Produtos
+6. Criar Pedido
+7. Visualizar Pedidos
+8. Sair
             `);
 
             opcao = readlineSync.questionInt('Escolha uma opção: ');
@@ -26,20 +29,29 @@ class Menu {
                     this.adicionarProduto();
                     break;
                 case 3:
-                    this.criarPedido();
+                    this.atualizarProduto();
                     break;
                 case 4:
-                    this.visualizarPedidos();
+                    this.removerProduto();
                     break;
                 case 5:
+                    this.listarProdutos();
+                    break;
+                case 6:
+                    this.criarPedido();
+                    break;
+                case 7:
+                    this.visualizarPedidos();
+                    break;
+                case 8:
                     console.log('Saindo...');
                     break;
                 default:
                     console.log('Opção inválida');
             }
-        } while (opcao !== 5);
+        } while (opcao !== 8);
     }
-//Criando um usuario para ter acesso aos produtos 
+
     private adicionarCliente(): void {
         const nome = readlineSync.question('Nome do Cliente: ');
         const email = readlineSync.question('Email do Cliente: ');
@@ -52,19 +64,43 @@ class Menu {
     }
 
     private adicionarProduto(): void {
-        console.log('Função para adicionar produto');
+        const id = readlineSync.questionInt('ID do Produto: ');
+        const nome = readlineSync.question('Nome do Produto: ');
+        const preco = readlineSync.questionFloat('Preço do Produto: ');
+        const categoria = readlineSync.question('Categoria do Produto: ');
+
+        const produto = new Produto(id, nome, preco, categoria);
+        Produto.cadastrarProduto(produto);
     }
-    // Vai fazer uma busca simples PELO EMAIL DO CLIENTE cadastrado no array de objetos
+
+    private atualizarProduto(): void {
+        const id = readlineSync.questionInt('ID do Produto a ser atualizado: ');
+        const nome = readlineSync.question('Novo Nome do Produto: ');
+        const preco = readlineSync.questionFloat('Novo Preço do Produto: ');
+        const categoria = readlineSync.question('Nova Categoria do Produto: ');
+
+        Produto.atualizarProduto(id, nome, preco, categoria);
+    }
+
+    private removerProduto(): void {
+        const id = readlineSync.questionInt('ID do Produto a ser removido: ');
+        Produto.removerProduto(id);
+    }
+
+    private listarProdutos(): void {
+        Produto.listarProdutos();
+    }
+
     private criarPedido(): void {
-        const clienteEmail =readlineSync.question('Email do Cliente: ');
+        const clienteEmail = readlineSync.question('Email do Cliente: ');
         const cliente = this.clientes.find(c => c.email === clienteEmail);
 
         if (!cliente) {
             console.log('Cliente não encontrado!');
             return;
-        }else{
+        } else {
             console.log('Cliente encontrado!');
-            return
+            // Aqui você pode adicionar a lógica para criar um pedido
         }
     }
 
@@ -72,7 +108,6 @@ class Menu {
         console.log('Função para visualizar pedidos será implementada aqui.');
     }
 }
-
 
 const menu = new Menu();
 menu.exibirMenu();
