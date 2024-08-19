@@ -1,5 +1,5 @@
 import * as readlineSync from 'readline-sync';
-import { Cliente } from './clientes';
+import { Cliente } from './Cliente';
 import { Produto } from './Produto';
 
 class Menu {

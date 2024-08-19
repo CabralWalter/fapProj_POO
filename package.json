@@ -20,5 +20,8 @@
     "./bin/*",
     "./lib/*"
   ],
-  "typings": "./lib/index.d.ts"
+  "typings": "./lib/index.d.ts",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
 }

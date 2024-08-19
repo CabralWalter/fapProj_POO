@@ -1,4 +1,4 @@
-import { Cliente } from './clientes';
+import { Cliente } from './Cliente';
 import { Produto } from './Produto';
 
 export class Pedido {
