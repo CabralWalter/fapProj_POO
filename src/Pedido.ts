@@ -27,4 +27,22 @@ export class Pedido {
     public static buscarPedidoPorId(id: number): Pedido | undefined {
         return this.pedidos.find(pedido => pedido.id === id);
     }
+
+    // Método listar pedidos
+    public static listarPedidos(): void {
+        if (this.pedidos.length === 0) {
+            console.log("Nenhum pedido encontrado.");
+            return;
+        }
+
+        this.pedidos.forEach(pedido => {
+            console.log(`Pedido ID: ${pedido.id}, Data e Hora: ${pedido.dataHora.toLocaleString()}, Cliente: ${pedido.cliente.nome}`);
+            console.log("Produtos:");
+            pedido.produtos.forEach(produto => {
+                console.log(`- ${produto.getNome()} | Preço: ${produto.getPreco()} | Categoria: ${produto.getCategoria()}`);
+            });
+            console.log("------");
+        });
+    }
+
 }
