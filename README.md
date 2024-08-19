@@ -20,3 +20,5 @@ Criar instâncias e realizar testes
 Conectar com Banco de Dados (Opcional)
 
 Entrega Final e Apresentação 20/08
+
+Apresentação - https://docs.google.com/presentation/d/1a6c0wLLlK3TO_yJ6ICobxFRPODEU1_R8s-jFnMgri3c/edit?usp=sharing
