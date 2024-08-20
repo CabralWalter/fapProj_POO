@@ -11,11 +11,11 @@ Tarefas:
 
 DER ✅
 
-Modelagem de Classes - https://drive.google.com/file/d/1GQ3BJ3K2ihFlZnhxkaEYH-AQn29PTDJg/view?usp=sharing
+Modelagem de Classes - https://drive.google.com/file/d/1GQ3BJ3K2ihFlZnhxkaEYH-AQn29PTDJg/view?usp=sharing ✅
 
-Criar classes e construtores das entidades
+Criar classes e construtores das entidades ✅
 
-Criar instâncias e realizar testes
+Criar instâncias e realizar testes ✅
 
 Conectar com Banco de Dados (Opcional)
 
