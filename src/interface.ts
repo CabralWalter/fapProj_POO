@@ -105,7 +105,7 @@ class Menu {
 
         do {
             const idProduto = readlineSync.questionInt('ID do Produto: ');
-            const produto = Produto.buscarProdutoPorId(idProduto);  // Método corrigido
+            const produto = Produto.buscarProdutoPorId(idProduto);
 
             if (!produto) {
                 console.log('Produto não encontrado!');
@@ -114,7 +114,7 @@ class Menu {
                 console.log('Produto adicionado ao pedido.');
             }
 
-            adicionarMaisProdutos = readlineSync.keyInYN('Deseja adicionar outro produto? ');
+            adicionarMaisProdutos = readlineSync.keyInYNStrict('Deseja adicionar outro produto? ');
 
         } while (adicionarMaisProdutos);
 
