@@ -4,7 +4,7 @@ export class Cliente {
     private clientes: ClienteInfo[] = [];
     private proximoId: number = 1;
 
-    cadastrarCliente(nomeCliente: string, emailCliente: string, enderecoCliente: string): ClienteInfo {
+    public cadastrarCliente(nomeCliente: string, emailCliente: string, enderecoCliente: string): ClienteInfo {
         const novoCliente: ClienteInfo = {
             idCliente: this.proximoId,
             nomeCliente: nomeCliente,
@@ -17,7 +17,7 @@ export class Cliente {
     }
 
     // Método para atualizar informações de um cliente
-    atualizarCliente(idCliente: number, nomeCliente: string, emailCliente: string, enderecoCliente: string): boolean {
+    public atualizarCliente(idCliente: number, nomeCliente: string, emailCliente: string, enderecoCliente: string): boolean {
         const cliente = this.clientes.find(c => c.idCliente === idCliente);
         if (cliente) {
             cliente.nomeCliente = nomeCliente;
@@ -29,7 +29,7 @@ export class Cliente {
     }
 
     // Método para remover um cliente pelo ID
-    removerCliente(idCliente: number): boolean {
+    public removerCliente(idCliente: number): boolean {
         const indice = this.clientes.findIndex(c => c.idCliente === idCliente);
         if (indice !== -1) {
             this.clientes.splice(indice, 1);
@@ -39,12 +39,14 @@ export class Cliente {
     }
 
     // Método para listar todos os clientes
-    listarClientes(): ClienteInfo[] {
+    public listarClientes(): ClienteInfo[] {
         return this.clientes;
     }
 
     // Método para buscar um cliente por email
-    buscarClientePorEmail(emailCliente: string): ClienteInfo | undefined {
+    public buscarClientePorEmail(emailCliente: string): ClienteInfo | undefined {
         return this.clientes.find(c => c.emailCliente === emailCliente);
     }
 }
+
+export { ClienteInfo };

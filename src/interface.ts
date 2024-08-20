@@ -1,10 +1,10 @@
 import * as readlineSync from 'readline-sync';
-import { Cliente } from './Cliente';
+import { Cliente} from './Cliente';
 import { Produto } from './Produto';
-//import { Pedido } from './Pedido';
+import { Pedido } from './Pedido';
 
 class Menu {
-    private clientes: Cliente[] = [];
+    private clienteManager: Cliente = new Cliente();
 
     public exibirMenu(): void {
         let opcao: number;
@@ -58,10 +58,9 @@ class Menu {
         const email = readlineSync.question('Email do Cliente: ');
         const endereco = readlineSync.question('Endereço do Cliente: ');
 
-        const cliente = new Cliente(nome, email, endereco);
-        this.clientes.push(cliente);
+        const cliente = this.clienteManager.cadastrarCliente(nome, email, endereco);
 
-        console.log('Cliente adicionado com sucesso!');
+        console.log('Cliente adicionado com sucesso! ID:', cliente.idCliente);
     }
 
     private adicionarProduto(): void {
@@ -93,20 +92,38 @@ class Menu {
     }
 
     private criarPedido(): void {
-        const clienteEmail = readlineSync.question('Email do Cliente: ');
-        const cliente = this.clientes.find(c => c.email === clienteEmail);
+        const emailCliente = readlineSync.question('Email do Cliente: ');
+        const cliente = this.clienteManager.buscarClientePorEmail(emailCliente);
 
         if (!cliente) {
             console.log('Cliente não encontrado!');
             return;
-        } else {
-            console.log('Cliente encontrado!');
-            // Aqui você pode adicionar a lógica para criar um pedido
         }
+
+        const produtos: Produto[] = [];
+        let adicionarMaisProdutos: boolean;
+
+        do {
+            const idProduto = readlineSync.questionInt('ID do Produto: ');
+            const produto = Produto.buscarProdutoPorId(idProduto);  // Método corrigido
+
+            if (!produto) {
+                console.log('Produto não encontrado!');
+            } else {
+                produtos.push(produto);
+                console.log('Produto adicionado ao pedido.');
+            }
+
+            adicionarMaisProdutos = readlineSync.keyInYN('Deseja adicionar outro produto? ');
+
+        } while (adicionarMaisProdutos);
+
+        const pedido = new Pedido(Pedido['pedidos'].length + 1, cliente, produtos);
+        Pedido.adicionarPedido(pedido);
     }
 
     private visualizarPedidos(): void {
-        console.log('Função para visualizar pedidos será implementada aqui.');
+        Pedido.listarPedidos();
     }
 }
 
