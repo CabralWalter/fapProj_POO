@@ -19,7 +19,7 @@ export class Pedido {
     // Método adicionar pedido
     public static adicionarPedido(pedido: Pedido): void {
         this.pedidos.push(pedido);
-        console.log("Pedido adicionado com sucesso!");
+        console.log("Pedido adicionado.");
     }
 
     // Método buscar pedido
