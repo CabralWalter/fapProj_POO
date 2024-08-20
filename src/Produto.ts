@@ -71,5 +71,10 @@ export class Produto {
       console.log(`Produto: ${produto.nome}, Preço: ${produto.preco}, Categoria: ${produto.categoria}`);
     });
   }
+
+
+  public static buscarProdutoPorId(id: number): Produto | undefined {
+    return this.produtos.find(p => p.id === id);
+  }
 }
 
