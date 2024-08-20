@@ -1,16 +1,15 @@
-import { Cliente } from './Cliente';
+import { ClienteInfo } from './ClienteInfo';
 import { Produto } from './Produto';
 
 export class Pedido {
     private id: number;
     private dataHora: Date;
-    private cliente: Cliente;
+    private cliente: ClienteInfo;
     private produtos: Produto[];
 
     private static pedidos: Pedido[] = [];
 
-    // Constructor
-    constructor(id: number, cliente: Cliente, produtos: Produto[]) {
+    constructor(id: number, cliente: ClienteInfo, produtos: Produto[]) {
         this.id = id;
         this.dataHora = new Date();
         this.cliente = cliente;
@@ -36,7 +35,7 @@ export class Pedido {
         }
 
         this.pedidos.forEach(pedido => {
-            console.log(`Pedido ID: ${pedido.id}, Data e Hora: ${pedido.dataHora.toLocaleString()}, Cliente: ${pedido.cliente.nome}`);
+            console.log(`Pedido ID: ${pedido.id}, Data e Hora: ${pedido.dataHora.toLocaleString()}, Cliente: ${pedido.cliente.nomeCliente}`);
             console.log("Produtos:");
             pedido.produtos.forEach(produto => {
                 console.log(`- ${produto.getNome()} | Preço: ${produto.getPreco()} | Categoria: ${produto.getCategoria()}`);

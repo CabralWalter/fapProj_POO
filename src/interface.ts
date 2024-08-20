@@ -1,6 +1,7 @@
 import * as readlineSync from 'readline-sync';
 import { Cliente } from './Cliente';
 import { Produto } from './Produto';
+//import { Pedido } from './Pedido';
 
 class Menu {
     private clientes: Cliente[] = [];
